@@ -1,5 +1,8 @@
-let {Tab, Tabs, Grid, Row, Col, Input} = ReactBootstrap;
+import { Tabs, Tab, Textfield, Grid, Cell} from 'react-mdl';
+
+import React from 'react';
 let {nlp_compromise} = window;
+
 let colours = {
   Noun: 'steelblue',
   Adjective: '#e5762b',
@@ -25,26 +28,30 @@ let css = {
   grid: {
     width: '100%',
     height: '100%',
+    padding:40
   },
   sentence: {
     padding: 10,
   }
 };
 
-let Pos = React.createClass({
-
-  getInitialState: function () {
-    return {
-      text: this.props.text || '',
+class Pos extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      tabId:0,
+      text: '',
       result: {},
-      show: this.props.show || 'Noun'
+      show: 'Noun'
     };
-  },
-  componentDidMount: function () {
-    this.fetch();
-  },
+    this.css={};
+  }
 
-  fetch: function (el) {
+  componentDidMount () {
+    this.fetch();
+  }
+
+  fetch (el) {
     let cmp = this;
     let file = 'Clinton_1998';
     if (el && el.target && el.target.value) {
@@ -56,14 +63,14 @@ let Pos = React.createClass({
       console.log(cmp.state.result);
       cmp.setState(cmp.state);
     });
-  },
+  }
 
-  underline: function (pos) {
+  underline (pos) {
     this.state.show = pos;
     this.setState(this.state);
-  },
+  }
 
-  pickTexts: function () {
+  pickTexts () {
     let texts = [
       'Clinton_1998', 'Clinton_1999', 'Clinton_2000',
       'Bush_2001', 'Bush_2002', 'Bush_2003', 'Bush_2004', 'Bush_2005', 'Bush_2006', 'Bush_2007', 'Bush_2008',
@@ -73,20 +80,20 @@ let Pos = React.createClass({
       return <option key={i} eventKey={s} value={s} title={s}>{s}</option>;
     });
     return (
-      <Input type="select" addonBefore={'Text:'} bsStyle={'success'} onChange={this.fetch}>
+      <select onChange={this.fetch}>
         {options}
-      </Input>
+      </select>
       );
-  },
+  }
 
-  isHighlighted: function(t, str) {
+  isHighlighted(t, str) {
     if (t.pos[str]) {
       return true;
     }
     return false;
-  },
+  }
 
-  result: function() {
+  result() {
     let cmp = this;
     let sentences = (this.state.result.sentences || []).map(function(s, key) {
       let terms = s.terms.map(function(t, i) {
@@ -109,10 +116,10 @@ let Pos = React.createClass({
           {sentences}
         </div>
       );
-  },
+  }
 
-  render: function () {
-
+  render () {
+    let {state}=this
     let actions = [
       'Noun',
       'Adjective',
@@ -123,37 +130,26 @@ let Pos = React.createClass({
       'Value',
     ];
     let tabs = actions.map(function(s, i) {
-      return <Tab key={i} eventKey={s} title={s}/>;
+      return <Tab key={i}>{s}</Tab>;
     });
     return (
       <Grid flex={true} style={css.grid}>
-        <Row>
-          <Col md={12} >
-            {'Part-of-Speech tagging'}
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={4} xs={4} >
-            {this.pickTexts()}
-          </Col>
-          <Col md={8} xs={8} >
-            <Tabs defaultActiveKey={'Noun'} activeKey={this.state.show} bsStyle="pills" animation={false} onSelect={this.underline}>
-              {tabs}
-            </Tabs>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            {this.result()}
-          </Col>
-        </Row>
+        <div>
+          {this.pickTexts()}
+          <Tabs activeTab={state.tabId} onChange={(tabId) => {this.setState({tabId:tabId, show:actions[tabId]})}} ripple>
+            {tabs}
+          </Tabs>
+        </div>
+        <Cell col={3}/>
+        <Cell col={9}>
+          {this.result()}
+        </Cell>
 
       </Grid>
       );
   }
 
-});
+}
 
 
-window.Pos = Pos;
+module.exports = Pos;

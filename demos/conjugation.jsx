@@ -1,4 +1,7 @@
-let {Row, Col, Input, Grid} = ReactBootstrap;
+import React from 'react';
+import { Tabs, Tab, Textfield, Grid, Cell} from 'react-mdl';
+
+let {nlp_compromise} = window;
 
 let Conjugation = React.createClass({
 
@@ -17,38 +20,38 @@ let Conjugation = React.createClass({
     if (el) {
       word = el.target.value || '';
     }
-    let v = nlp.Verb(word);
+    let v = nlp_compromise.verb(word);
     this.state.words = v.conjugate();
-    this.state.word = word;
+    // this.state.word = word;
     this.setState(this.state);
   },
 
   result: function() {
     let cmp = this;
     return Object.keys(this.state.words).map(function(k, i) {
-      let negated = nlp.Verb(cmp.state.words[k]).negate();
+      let negated = nlp_compromise.verb(cmp.state.words[k]).negate();
       return (
-        <Row key={i}>
-          <Col md={4} xs={4}>
+        <Grid key={i}>
+          <Cell col={4}>
             {k + ':'}
-          </Col>
-          <Col md={4} xs={4}>
+          </Cell>
+          <Cell col={4}>
             <b>{cmp.state.words[k]}</b>
-          </Col>
-          <Col md={4} xs={4}>
+          </Cell>
+          <Cell col={4}>
             {negated}
-          </Col>
-        </Row>
+          </Cell>
+        </Grid>
         );
     });
   },
   newWord: function() {
-    let keys = Object.keys(window.nlp.Lexicon);
+    let keys = Object.keys(window.nlp_conjugate.Lexicon);
     keys = keys.filter(function(k) {
       if (!window.nlp.Lexicon[k]) {
         console.log(k);
       }
-      return window.nlp.Lexicon[k] === 'Infinitive';
+      return window.nlp_conjugate.Lexicon[k] === 'Infinitive';
     });
     let l = keys.length;
     let r = parseInt(Math.random() * l, 10);
@@ -63,45 +66,37 @@ let Conjugation = React.createClass({
         height: 200,
         display: 'block'
       },
-      img: {
-        width: 40,
-        cursor: 'pointer',
-        textAlign: 'left'
+      input:{
+        height:40,
+        margin:5,
+        width:550,
+        fontSize:30,
+        color:"grey",
+        borderRadius:5
       }
     };
     return (
       <Grid flex={true} style={css.grid}>
-        <Row>
-          <Col md={12} style={css.top}>
+          <Cell col={12} style={css.top}>
             {'Verb conjugation - nlp_compromise '}
             {'v2'}
-          </Col>
-        </Row>
+          </Cell>
 
-        <Row>
-          <Col md={4} xs={0}/>
-          <Col md={4} xs={10}>
-            <Input type="text" value={this.state.word} onChange={this.update}/>
-          </Col>
-          <Col md={4} xs={2}>
-            <img style={css.img} src="./refresh.ico" onClick={this.newWord}/>
-          </Col>
-        </Row>
+          <Cell col={2}/>
+          <Cell col={8}>
+            <input type="text" style={css.input} value={this.state.word} onKeyUp={this.update}/>
+          </Cell>
+          <Cell col={2}/>
 
-        <Row>
-          <Col md={3} xs={0}/>
-          <Col md={6} xs={12}>
+          <Cell col={3} />
+          <Cell col={6} >
             {this.result()}
-          </Col>
-        </Row>
+          </Cell>
 
-        <Row>
-          <Col md={3} />
-        </Row>
       </Grid>
       );
   }
 
 });
 
-window.Conjugation = Conjugation;
+module.exports = Conjugation;
