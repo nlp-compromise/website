@@ -18,7 +18,7 @@ module.exports = function(grunt) {
       debug: {
         src: ['../nlp_compromise/src/**/*.js'],
         options: {
-          output: 'docs/browse/'
+          output: './browse/'
         }
       }
     }

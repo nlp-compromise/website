@@ -15,7 +15,7 @@ class Docs extends React.Component {
   render() {
     let {state}=this
     return (
-      <div style={{height: '100%', position: 'relative'}}>
+      <div key="docs" style={{height: '100%', position: 'relative'}}>
         Docs
       </div>
       );

@@ -1,10 +1,13 @@
-const {nlp_compromise} = window;
+const {nlp_compromise, nlpSyllables, nlpLocale, nlpNgram} = window;
 import React from 'react';
 import ReactDOM from "react-dom";
 import { Layout, Drawer, Tabs, Tab, Navigation, Content, Header, Textfield} from 'react-mdl';
 import Demos from "./demos/demos.jsx"
 import Docs from "./docs/docs.jsx"
 import Source from "./source/source.jsx"
+
+//apply plugins
+nlp_compromise.plugin(nlpSyllables)
 
 class Home extends React.Component {
   constructor(props) {
