@@ -89,6 +89,24 @@ class Docs extends React.Component {
             })
           })
         }
+      },
+      {
+        title:"Syllable hyphenization",
+        text:"houston texas",
+        code:"nlp.plugin(require('nlp-syllables'))",
+        about:"splits words into their pronounceable parts",
+        href:"https://github.com/nlp-compromise/nlp-syllables",
+        callback:function(str){
+          let t=nlp_compromise.text(str)
+          let syllables=t.syllables()
+          return syllables.map(function(arr){
+            return arr.map(function(a){
+              return a.map(function(s){
+                return <li>{s}</li>
+              })
+            })
+          })
+        }
       }
     ]
 
