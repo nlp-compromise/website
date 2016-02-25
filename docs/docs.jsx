@@ -1,7 +1,17 @@
 const {nlp_compromise} = window;
 import React from 'react';
-import ReactDOM from "react-dom";
-import { Layout, Drawer, Tabs, Tab, Navigation, Content, Header, Textfield} from 'react-mdl';
+import Doc from './doc.jsx';
+
+let docs=[
+  {
+    title: 'Install',
+    code: 'npm i nlp_compromise',
+    about: '',
+    href: '#',
+    callback: function(str) {
+    }
+  },
+]
 
 class Docs extends React.Component {
   constructor(props) {
@@ -14,9 +24,12 @@ class Docs extends React.Component {
 
   render() {
     let {state}=this
+    let rows=docs.map((o)=>{
+      return <Doc {...o}/>
+    })
     return (
       <div key="docs" style={{height: '100%', position: 'relative'}}>
-        Docs
+        {rows}
       </div>
       );
   }

@@ -1,10 +1,7 @@
-const {nlp_compromise} = window;
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Grid, Cell, Textfield } from 'react-mdl';
 import colors from '../colors';
 
-class Demo extends React.Component {
+class Doc extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,21 +57,6 @@ class Demo extends React.Component {
         color: 'grey'
       }
     };
-    this.doNlp = this.doNlp.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
-  componentDidMount() {
-    this.doNlp();
-  }
-  onChange(e) {
-    let {state, props} = this;
-    state.text = e.target.value;
-    this.doNlp();
-  }
-  doNlp() {
-    let {state, props} = this;
-    state.result = props.callback(state.text);
-    this.setState(state);
   }
 
   render() {
@@ -97,18 +79,11 @@ class Demo extends React.Component {
             {'source >'}
           </span>
         </div>
-        <Textfield
-      expandable={false}
-      onChange={this.onChange}
-      label="A Sentence.."
-      value={state.text}
-      style={css.input}
-      />
         <div style={css.result}>
-          {state.result}
+          {props.docs}
         </div>
       </div>
       );
   }
 }
-module.exports = Demo;
+module.exports = Doc;

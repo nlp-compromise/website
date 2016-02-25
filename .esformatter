@@ -3,7 +3,8 @@
     "esformatter-quotes",
     "esformatter-parseint",
     "esformatter-braces",
-    "esformatter-semicolons"
+    "esformatter-semicolons",
+    "esformatter-jsx-ignore"
   ],
   "quotes": {
     "type": "single",
