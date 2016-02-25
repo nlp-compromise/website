@@ -1,5 +1,7 @@
 import React from 'react';
 import colors from '../colors';
+import ReactDOM from 'react-dom'
+import ReactMarkdown from 'react-markdown'
 
 class Doc extends React.Component {
   constructor(props) {
@@ -66,21 +68,8 @@ class Doc extends React.Component {
         <div style={css.title}>
           {props.title}
         </div>
-        <div style={css.about}>
-          {props.about}
-        </div>
-        <div  >
-          <span style={css.code} onClick={() => {
-        window.location.href = props.href;
-      }}>
-            {props.code}
-          </span>
-          <span style={css.source} onClick={() => window.location.href = props.href}>
-            {'source >'}
-          </span>
-        </div>
         <div style={css.result}>
-          {props.docs}
+          <ReactMarkdown source={props.md} />
         </div>
       </div>
       );

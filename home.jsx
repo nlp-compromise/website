@@ -25,12 +25,25 @@ class Home extends React.Component {
       <Docs/>,
       <Join/>
     ];
+    let heading_css={
+      position:'absolute',
+      left:15,
+      top:7,
+      color: '#596692',
+      fontSize: 20,
+      fontWeight: 500
+    }
     return (
       <div style={{
         height: '100%',
         position: 'relative'
       }}>
-        <Tabs activeTab={state.tabId} onChange={(tabId) => {
+
+      <div style={heading_css}>
+        nlp_compromise
+      </div>
+
+      <Tabs activeTab={state.tabId} onChange={(tabId) => {
         this.setState({
           tabId: tabId
         });
