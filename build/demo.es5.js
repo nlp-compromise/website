@@ -538,6 +538,27 @@ var Docs = function (_React$Component) {
           });
         }
       }, {
+        text: 'six hundred and fifty nine',
+        title: 'Number-comprehension',
+        code: 'nlp.value(\'\').number',
+        about: 'understands textual numbers',
+        href: './browse/to_number.html',
+        callback: function callback(str) {
+          var v = nlp_compromise.value(str);
+          console.log(v);
+          var css = {
+            color: '#596692',
+            padding: 12,
+            fontSize: 46,
+            fontWeight: 600
+          };
+          return _react2.default.createElement(
+            'div',
+            { key: 'int', style: css },
+            v.number
+          );
+        }
+      }, {
         text: 'houston texas',
         title: 'Syllable hyphenization',
         code: 'nlp.plugin(require(\'nlp-syllables\'))',
@@ -563,6 +584,29 @@ var Docs = function (_React$Component) {
               });
             });
           });
+        }
+      }, {
+        text: 'grey is my favorite color',
+        title: 'US-UK localization',
+        code: 'nlp.plugin(require(\'nlp-locale\'))',
+        about: 'understands textual numbers',
+        href: 'https://github.com/nlp-compromise/nlp-locale',
+        callback: function callback(str) {
+          var t = nlp_compromise.text(str);
+          console.log(t);
+          console.log(t.toBritish());
+          console.log(t);
+          var css = {
+            color: '#596692',
+            padding: 12,
+            fontSize: 46,
+            fontWeight: 600
+          };
+          return _react2.default.createElement(
+            'div',
+            { key: 'int', style: css },
+            t.text()
+          );
         }
       }];
 

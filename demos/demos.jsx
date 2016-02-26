@@ -150,6 +150,24 @@ class Docs extends React.Component {
         }
       },
       {
+        text: 'six hundred and fifty nine',
+        title: 'Number-comprehension',
+        code: 'nlp.value(\'\').number',
+        about: 'understands textual numbers',
+        href: './browse/to_number.html',
+        callback: function(str) {
+          let v = nlp_compromise.value(str);
+          console.log(v)
+          let css = {
+            color: '#596692',
+            padding: 12,
+            fontSize: 46,
+            fontWeight: 600
+          };
+          return <div key={'int'} style={css}>{v.number}</div>;
+        }
+      },
+      {
         text: 'houston texas',
         title: 'Syllable hyphenization',
         code: 'nlp.plugin(require(\'nlp-syllables\'))',
@@ -172,7 +190,29 @@ class Docs extends React.Component {
             });
           });
         }
+      },
+
+      {
+        text: 'grey is my favorite color',
+        title: 'US-UK localization',
+        code: 'nlp.plugin(require(\'nlp-locale\'))',
+        about: 'understands textual numbers',
+        href: 'https://github.com/nlp-compromise/nlp-locale',
+        callback: function(str) {
+          let t = nlp_compromise.text(str);
+          console.log(t)
+          console.log(t.toBritish())
+          console.log(t)
+          let css = {
+            color: '#596692',
+            padding: 12,
+            fontSize: 46,
+            fontWeight: 600
+          };
+          return <div key={'int'} style={css}>{t.text()}</div>;
+        }
       }
+
     ];
 
     return (
