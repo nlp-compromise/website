@@ -196,20 +196,55 @@ class Docs extends React.Component {
         text: 'grey is my favorite color',
         title: 'US-UK localization',
         code: 'nlp.plugin(require(\'nlp-locale\'))',
-        about: 'understands textual numbers',
+        about: 'converts between british and american spellings',
         href: 'https://github.com/nlp-compromise/nlp-locale',
         callback: function(str) {
           let t = nlp_compromise.text(str);
-          console.log(t)
-          console.log(t.toBritish())
-          console.log(t)
+          t.toBritish()
           let css = {
             color: '#596692',
             padding: 12,
             fontSize: 46,
             fontWeight: 600
           };
-          return <div key={'int'} style={css}>{t.text()}</div>;
+          return <div key={'locale'} style={css}>{t.text()}</div>;
+        }
+      },
+      {
+        text: 'keep on rocking in the free world',
+        title: 'Tense conversion',
+        code: 'nlp.text(\'\').to_past()',
+        about: 'turns a statement into a different tense',
+        href: '/browse/tense.html',
+        callback: function(str) {
+          let t = nlp_compromise.text(str);
+          t.to_past()
+          let css = {
+            color: '#596692',
+            padding: 12,
+            fontSize: 46,
+            fontWeight: 600
+          };
+          return <div key={'tense'} style={css}>{t.text()}</div>;
+        }
+      },
+
+      {
+        text: 'keep on rocking in the free world',
+        title: 'Negation',
+        code: 'nlp.text(\'\').negate()',
+        about: 'turns a statement into the opposite meaning',
+        href: '/browse/negate.html',
+        callback: function(str) {
+          let t = nlp_compromise.text(str);
+          t.negate()
+          let css = {
+            color: '#596692',
+            padding: 12,
+            fontSize: 46,
+            fontWeight: 600
+          };
+          return <div key={'negate'} style={css}>{t.text()}</div>;
         }
       }
 
