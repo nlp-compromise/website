@@ -6,10 +6,7 @@ import ReactMarkdown from 'react-markdown'
 class Doc extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      text: this.props.text || '',
-      about: true,
-    };
+    this.state = {};
     this.css = {
       container: {
         width: '100%',
@@ -17,7 +14,7 @@ class Doc extends React.Component {
         overflowX: 'hidden',
         height: 400,
         padding: 50,
-        border: '6px solid steelblue' // + colors[parseInt(Math.random() * 9, 10)]
+        border: '6px solid steelblue'
       },
       input: {
         fontSize: 29,
@@ -64,7 +61,7 @@ class Doc extends React.Component {
   render() {
     let {state, css, props} = this;
     return (
-      <div key={props.title} style={css.container}>
+      <div key={props.key} style={css.container}>
         <div style={css.title}>
           {props.title}
         </div>

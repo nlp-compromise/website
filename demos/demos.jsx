@@ -2,9 +2,7 @@ const {nlp_compromise} = window;
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Cell } from 'react-mdl';
-// import Sentences from "./sentences.jsx"
-// import Pos from "./pos.jsx"
-// import Conjugation from "./conjugation.jsx"
+import LongText from "./longText.jsx"
 import Demo from './demo.jsx';
 
 import colors from '../colors';
@@ -58,8 +56,8 @@ class Docs extends React.Component {
             }
           };
           let terms = [];
-          t.sentences.forEach(function(s) {
-            s.terms.forEach(function(t) {
+          t.sentences.forEach(function(s,i) {
+            s.terms.forEach(function(t,o) {
               let css = {
                 margin: 6,
                 fontSize: 26,
@@ -68,7 +66,7 @@ class Docs extends React.Component {
                 padding: 5,
                 backgroundColor: findColor(t)
               };
-              terms.push(<span title={t.tag} style={css}>{t.text}</span>);
+              terms.push(<span key={i+o} title={t.tag} style={css}>{t.text}</span>);
             });
           });
           return terms;
@@ -146,8 +144,8 @@ class Docs extends React.Component {
             fontSize: 16,
             fontWeight: 500
           };
-          return t.sentences.map(function(s) {
-            return <li style={css}>{s.text()}</li>;
+          return t.sentences.map(function(s,i) {
+            return <li key={i} style={css}>{s.text()}</li>;
           });
         }
       },
@@ -167,9 +165,9 @@ class Docs extends React.Component {
             fontWeight: 500
           };
           return syllables.map(function(arr) {
-            return arr.map(function(a) {
-              return a.map(function(s) {
-                return <li style={css}>{s}</li>;
+            return arr.map(function(a,i) {
+              return a.map(function(s,o) {
+                return <li key={i+o} style={css}>{s}</li>;
               });
             });
           });
@@ -183,9 +181,10 @@ class Docs extends React.Component {
         height: '90%'
       }}>
         {demos.map(function(d, i) {
-        d.i = i;
-        return <Demo {...d}/>;
-      })}
+          d.i = i;
+          return <Demo {...d}/>;
+         })}
+        <LongText />
       </div>
       );
   }

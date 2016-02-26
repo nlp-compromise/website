@@ -32,10 +32,15 @@ let css = {
   },
   sentence: {
     padding: 10,
+  },
+  title: {
+    color: 'grey',
+    fontSize: 30,
+    padding: 4
   }
 };
 
-class Pos extends React.Component {
+class LongText extends React.Component {
   constructor(props) {
     super(props);
     this.state={
@@ -134,16 +139,22 @@ class Pos extends React.Component {
     });
     return (
       <Grid flex={true} style={css.grid}>
-        <div>
+        <Cell col={12}>
+          <span style={css.title}>{"Text Parsing"}</span>
+        </Cell>
+        <Cell col={2}>
           {this.pickTexts()}
+        </Cell>
+        <Cell col={10}>
           <Tabs activeTab={state.tabId} onChange={(tabId) => {this.setState({tabId:tabId, show:actions[tabId]})}} ripple>
             {tabs}
           </Tabs>
-        </div>
-        <Cell col={3}/>
-        <Cell col={9}>
+        </Cell>
+        <Cell col={1}/>
+        <Cell col={10}>
           {this.result()}
         </Cell>
+        <Cell col={1}/>
 
       </Grid>
       );
@@ -152,4 +163,4 @@ class Pos extends React.Component {
 }
 
 
-module.exports = Pos;
+module.exports = LongText;

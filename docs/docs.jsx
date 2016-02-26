@@ -37,16 +37,14 @@ npm install nlp-syllables
 class Docs extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-      tabId:0
-    };
+    this.state={};
     this.css={};
   }
 
   render() {
     let {state}=this
-    let rows=docs.map((o)=>{
-      return <Doc {...o}/>
+    let rows=docs.map((o,i)=>{
+      return <Doc {...o} key={i}/>
     })
     return (
       <div key="docs" style={{height: '100%', position: 'relative'}}>

@@ -8,6 +8,8 @@ import Join from './join/join.jsx';
 
 //apply plugins
 nlp_compromise.plugin(nlpSyllables);
+nlp_compromise.plugin(nlpLocale);
+nlp_compromise.plugin(nlpNgram);
 
 class Home extends React.Component {
   constructor(props) {
@@ -31,7 +33,8 @@ class Home extends React.Component {
       top:7,
       color: '#596692',
       fontSize: 20,
-      fontWeight: 500
+      fontWeight: 500,
+      cursor:'pointer'
     }
     return (
       <div style={{
@@ -39,7 +42,7 @@ class Home extends React.Component {
         position: 'relative'
       }}>
 
-      <div style={heading_css}>
+      <div style={heading_css} onClick={()=>window.location.href="https://github.com/nlp-compromise/nlp_compromise"}>
         nlp_compromise
       </div>
 
