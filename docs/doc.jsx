@@ -12,9 +12,10 @@ class Doc extends React.Component {
         width: '100%',
         overflowY: 'auto',
         overflowX: 'hidden',
-        height: 400,
-        padding: 50,
-        border: '6px solid steelblue'
+        minHeight: 300,
+        padding: 20,
+        margin: 50,
+        borderLeft: '6px solid steelblue'
       },
       input: {
         fontSize: 29,
@@ -67,6 +68,7 @@ class Doc extends React.Component {
         </div>
         <div style={css.result}>
           <ReactMarkdown source={props.md} />
+          {props.html}
         </div>
       </div>
       );

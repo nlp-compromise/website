@@ -11,11 +11,23 @@ nlp_compromise.plugin(nlpSyllables);
 nlp_compromise.plugin(nlpLocale);
 nlp_compromise.plugin(nlpNgram);
 
+
+const tabArr=[
+'demos',
+'docs',
+'join'
+]
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    let hash=tabArr.indexOf((window.location.hash||'').replace('#',''))
+    if(hash<0){
+      hash=0
+    }
+    console.log(hash)
     this.state = {
-      tabId: 0
+      tabId: hash || 0
     };
     this.css = {};
   }
@@ -47,6 +59,7 @@ class Home extends React.Component {
       </div>
 
       <Tabs activeTab={state.tabId} onChange={(tabId) => {
+        window.location.hash= tabArr[tabId]
         this.setState({
           tabId: tabId
         });

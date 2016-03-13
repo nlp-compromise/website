@@ -10,15 +10,19 @@ class Demo extends React.Component {
     this.state = {
       text: this.props.text || '',
       about: true,
+      color:colors[parseInt(Math.random() * 9, 10)]
     };
     this.css = {
       container: {
-        width: '100%',
-        overflowY: 'auto',
+        width: '90%',
+        // overflowY: 'auto',
         overflowX: 'hidden',
-        height: 400,
-        padding: 50,
-        border: '6px solid steelblue' // + colors[parseInt(Math.random() * 9, 10)]
+        minHeight: 300,
+        padding: 20,
+        margin: 50,
+        borderLeft: '6px solid '+ this.state.color,
+        borderBotton:'1px solid grey',
+        borderRadius:4
       },
       input: {
         fontSize: 29,
@@ -46,17 +50,17 @@ class Demo extends React.Component {
         cursor: 'pointer'
       },
       title: {
-        color: 'grey',
+        color: this.state.color,
         fontSize: 30,
         padding: 4
       },
       about: {
         fontSize: 15,
-        marginLeft: 60,
+        marginLeft: 30,
         color: '#f1aa66'
       },
       result: {
-        marginLeft: 120,
+        marginLeft: 60,
         color: 'grey'
       }
     };
@@ -76,6 +80,9 @@ class Demo extends React.Component {
     state.result = props.callback(state.text);
     this.setState(state);
   }
+  link(){
+    window.location.href = this.props.href
+  }
 
   render() {
     let {state, css, props} = this;
@@ -88,12 +95,10 @@ class Demo extends React.Component {
           {props.about}
         </div>
         <div  >
-          <span style={css.code} onClick={() => {
-        window.location.href = props.href;
-      }}>
+          <span style={css.code} onClick={this.link.bind(this)}>
             {props.code}
           </span>
-          <span style={css.source} onClick={() => window.location.href = props.href}>
+          <span style={css.source} onClick={this.link.bind(this)}>
             {'source >'}
           </span>
         </div>

@@ -85,7 +85,7 @@ class LongText extends React.Component {
       return <option key={i} eventKey={s} value={s} title={s}>{s}</option>;
     });
     return (
-      <select onChange={this.fetch}>
+      <select onChange={this.fetch.bind(this)}>
         {options}
       </select>
       );
@@ -106,9 +106,15 @@ class LongText extends React.Component {
           borderBottom: '2px solid white'
         };
         if (cmp.isHighlighted(t, cmp.state.show)) {
-          css_word.borderBottom = '2px solid ' + colours[cmp.state.show];
+          css_word.borderBottom = '3px solid ' + colours[cmp.state.show];
+          css_word.color=colours[cmp.state.show]
         }
-        return <span style={css_word} key={i} title={t.tag + '  ' + t.reason}>{' ' + t.text}</span>;
+        return (
+          <span>
+            <span style={css_word} key={i} title={t.tag + '  ' + t.reason}>{ t.text}</span>
+            <span>{' '}</span>
+          </span>
+        )
       });
       return (
         <div style={css.sentence} key={key}>
