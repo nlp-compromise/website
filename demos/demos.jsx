@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Grid, Cell } from 'react-mdl';
 import LongText from "./longText.jsx"
 import Demo from './demo.jsx';
+import Pos from './pos.jsx';
 
 import colors from '../colors';
 
@@ -27,49 +28,7 @@ class Docs extends React.Component {
         about: 'assigns the particular used grammar for each term',
         href: './browse/tagger.html',
         callback: function(str) {
-          let t = nlp_compromise.text(str);
-          let pos = {
-            Infinitive: '#e74c3c',
-            PastTense: '#c0392b',
-            Verb: '#d35400',
-
-            Adverb: '#e67e22',
-            Adjective: '#f1c40f',
-
-            Person: '#3498db',
-            Noun: '#2980b9',
-
-            Date: '#c0392b',
-            Value: '#c0392b',
-
-            Conjunction: '#16a085',
-            Preposition: '#16a085',
-            Determiner: '#27ae60',
-            Term: '#2c3e50',
-          };
-          let findColor = function(t) {
-            let keys = Object.keys(pos);
-            for(let i = 0; i < keys.length; i++) {
-              if (t.pos[keys[i]]) {
-                return pos[keys[i]];
-              }
-            }
-          };
-          let terms = [];
-          t.sentences.forEach(function(s,i) {
-            s.terms.forEach(function(t,o) {
-              let css = {
-                margin: 6,
-                fontSize: 26,
-                color: 'white',
-                minWidth: 20,
-                padding: 5,
-                backgroundColor: findColor(t)
-              };
-              terms.push(<span key={i+o} title={t.tag} style={css}>{t.text}</span>);
-            });
-          });
-          return terms;
+          return <Pos str={str}/>
         }
       },
       {
