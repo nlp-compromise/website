@@ -68,14 +68,13 @@ npm install nlp-syllables
 `,
   },
   {
-    title: 'Class structure',
+    title: 'Classes',
     href: '#',
     md: ``,
     html:(<div>
       <div>{'nlp_compromise is built and used according to these concepts:'}</div>
       {heading('Text', 'a collection of sentences, and methods that map over them.')}
-      {heading('Sentence', `a independant collection of terms, and the logic for transforming them accurately.
-      Sentences are grammatically independant.`)}
+      {heading('Sentence', `a independant collection of terms, and the logic for transforming them accurately.`)}
         <ul>
           {heading('Question', `a sentence that requests information`)}
           {heading('Statement', `a sentence that describes a fact or facts`)}
@@ -94,49 +93,48 @@ npm install nlp-syllables
         {heading('Adjective', `a descriptive term for a noun`)}
         {heading('Adverb', `a descriptive term for a verb or adjective`)}
       </ul>
-      <div>{'Every class can be '}</div>
+      <div>{'Every class can be called directly from the api, like nlp.place(\'Jamaica\')'}</div>
     </div>)
   },
   {
     title: 'Plugins',
     href: '#',
     md: `
-*nlp_compromise* attempts to become the best way to work with, interpret, and manipulate language in javascript.
-Every class and it's prototype are surfaced in the api for overloading or augmenting.
+Every class and it's prototype are surfaced in the api for augmenting or overloading.
 Any sort of procedure or analysis can be applied, then shared as a plugin.
 Multiple plugins can be applied, and co-ordinated.
-<code>
-let my_mixin = {
-  Term: {
-    fun : function() {
-      return this.text + '!';
-    }
-  }
-};
-nlp_compromise.plugin(my_mixin);
-let w = nlp_compromise.term('work');
-w.fun()
-// "work!"
-</code>
+\`\`\`
+    let my_mixin = {
+      Term: {
+        fun : function() {
+          return this.text + '!';
+        }
+      }
+    };
+    nlp_compromise.plugin(my_mixin);
+    let w = nlp_compromise.term('work');
+    w.fun()
+    // "work!"
+\`\`\`
 
 For smarter plugins, you can also pass a function into *nlp_compromise.plugin* to get access to the library instance.
 
 For example:
-<code>
-let clever_mixin = function (nlp) {
-  return {
-    Noun: {
-      make_it_fun : function() {
-        return nlp.sentence(this.text + 'is fun!');
-      }
-    }
-  };
-};
-nlp_compromise.plugin(clever_mixin);
-let w = nlp_compromise.noun('work');
-w.make_it_fun().text()
-// "work is fun!"
-</code>
+\`\`\`
+    let clever_mixin = function (nlp) {
+      return {
+        Noun: {
+          make_it_fun : function() {
+            return nlp.sentence(this.text + 'is fun!');
+          }
+        }
+      };
+    };
+    nlp_compromise.plugin(clever_mixin);
+    let w = nlp_compromise.noun('work');
+    w.make_it_fun().text()
+    // "work is fun!"
+\`\`\`
     `
   }
 ]
