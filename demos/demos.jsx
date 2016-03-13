@@ -22,7 +22,7 @@ class Docs extends React.Component {
 
     let demos = [
       {
-        text: 'Franklin Delano Roosevelt could walk the walk.',
+        text: 'Franklin Delano Roosevelt could walk the walk. He really gagodizes those gadoozles.',
         title: 'Part-of-Speech tagging',
         code: 'nlp.text(\'\').tags()',
         about: 'assigns the particular used grammar for each term',

@@ -7,7 +7,10 @@ const Style = Radium.Style;
 class Pos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      show: null,
+      ignore_hover: false
+    };
     this.colors = {
       Infinitive: '#e74c3c',
       PastTense: '#c0392b',
@@ -29,16 +32,32 @@ class Pos extends React.Component {
     };
     this.css = {
       term: {
+        display: 'inline-block',
+        height: 80,
+        cursor: 'pointer',
+        position: 'relative'
+      },
+      word: {
         margin: 6,
         fontSize: 26,
         color: 'white',
-        minWidth: 20,
+        minWidth: 40,
         padding: 5,
-        backgroundColor: 'blue' //findColor(t)
+        textAlign: 'center',
+        backgroundColor: 'steelblue'
+      },
+      pos: {
+        textAlign: 'center',
+        position: 'absolute',
+        minHeight: 100,
+        maxHeight: 100,
+        height: 100,
+        top: 40,
+        zIndex: 3,
+        overflow: 'hidden'
       }
     };
     this.makeTerm = this.makeTerm.bind(this);
-    this.showTerm = this.showTerm.bind(this);
     this.findColor = this.findColor.bind(this);
   }
 
@@ -53,18 +72,38 @@ class Pos extends React.Component {
     return null;
   };
 
-  showTerm(el) {}
+  hoverTerm(key) {
+    if (!this.state.ignore_hover) {
+      this.state.show = key;
+      this.setState(this.state);
+    }
+  }
+
+  clickTerm(key) {
+    this.state.ignore_hover = true;
+    this.state.show = key;
+    this.setState(this.state);
+  }
 
   makeTerm(t, key) {
-    let {colors, css, findColor} = this;
+    let {colors, css, findColor, state} = this;
     let color = {
       backgroundColor: findColor(t)
     };
+    let posList = Object.keys(t.pos).map((k, i) => {
+      return <span key={i} style={{padding:10}}>{k}</span>;
+    });
+    if (this.state.show !== key) {
+      posList = null;
+    }
     return (
-      <span>
-        <span key={key} title={t.tag} style={[css.term, color]}>
+      <span key={key} style={css.term} onMouseOver={this.hoverTerm.bind(this,key)} onClick={this.clickTerm.bind(this,key)}>
+        <span title={t.tag} style={[css.word, color]}>
           {t.text}
         </span>
+        <div style={css.pos}>
+          {posList}
+        </div>
       </span>
     );
   }
@@ -72,13 +111,14 @@ class Pos extends React.Component {
   render() {
     let {colors, props} = this;
     let text = nlp_compromise.text(props.str);
-    let terms = [];
-    text.sentences.forEach((s, i) => {
-      s.terms.forEach((t, o) => {
-        terms.push(this.makeTerm(t, o + i));
+    let all = text.sentences.map((s, i) => {
+      let terms = s.terms.map((t, o) => {
+        let key = o + '-' + i;
+        return this.makeTerm(t, key);
       });
+      return <div>{terms}</div>;
     });
-    return <div>{terms}</div>;
+    return <div>{all}</div>;
   }
 }
 Pos = Radium(Pos);
