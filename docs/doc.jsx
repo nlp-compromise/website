@@ -10,7 +10,7 @@ class Doc extends React.Component {
     this.css = {
       container: {
         width: '100%',
-        overflowY: 'auto',
+        overflowY: 'scroll',
         overflowX: 'hidden',
         minHeight: 300,
         padding: 20,

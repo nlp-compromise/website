@@ -187,25 +187,25 @@ class Docs extends React.Component {
           return <div key={'tense'} style={css}>{t.text()}</div>;
         }
       },
-
-      {
-        text: `This was the best of times, this was the worst of times`,
-        title: 'Replace',
-        code: `nlp.text('').replace('[Noun]', 'cyber$1')`,
-        about: 'grammar-aware search+replace',
-        href: '/browse/match.html',
-        callback: function(str) {
-          let t = nlp_compromise.text(str);
-          t.replace('[Noun]','cyber$1')
-          let css = {
-            color: '#596692',
-            padding: 35,
-            fontSize: 26,
-            fontWeight: 400
-          };
-          return <div key={'contractions'} style={css}>{t.text()}</div>;
-        }
-      },
+      // 
+      // {
+      //   text: `This was the best of times, this was the worst of times`,
+      //   title: 'Replace',
+      //   code: `nlp.text('').replace('[Noun]', 'cyber$1')`,
+      //   about: 'grammar-aware search+replace',
+      //   href: '/browse/match.html',
+      //   callback: function(str) {
+      //     let t = nlp_compromise.text(str);
+      //     t.replace('[Noun]','cyber$1')
+      //     let css = {
+      //       color: '#596692',
+      //       padding: 35,
+      //       fontSize: 26,
+      //       fontWeight: 400
+      //     };
+      //     return <div key={'contractions'} style={css}>{t.text()}</div>;
+      //   }
+      // },
 
       {
         text: `We've only just begun, to live. White lace and promises. We'll start out walkin' and learn to run.`,

@@ -21,10 +21,10 @@ let heading=function(txt, desc){
       fontSize:18
     },
     h2:{
-      color:'white',
-      backgroundColor:'steelblue',
+      color:'steelblue',
+      borderBottom:'3px solid steelblue',
       margin:5,
-      padding:5,
+      padding:2,
       fontSize:20
     },
     li:{
@@ -33,13 +33,15 @@ let heading=function(txt, desc){
   }
   return (
     <li style={css.li}>
-      <span style={css.h2}>{txt+'()'}</span>
-        <div style={css.desc}>
-          {desc}
-          <span style={css.source} onClick={()=>window.location='./browse/'+txt.toLowerCase()+'.html'}>
-            {' source'}
-          </span>
-        </div>
+      <span style={css.h2}>
+        {txt+'()'}
+      </span>
+      <div style={css.desc}>
+        {desc}
+        <span style={css.source} onClick={()=>window.location='./browse/'+txt.toLowerCase()+'.html'}>
+          {' source'}
+        </span>
+      </div>
     </li>
   )
 }
@@ -68,11 +70,11 @@ npm install nlp-syllables
 `,
   },
   {
-    title: 'Classes',
+    title: 'Class Structure',
     href: '#',
     md: ``,
-    html:(<div>
-      <div>{'nlp_compromise is built and used according to these concepts:'}</div>
+    html:(<div key={'class'}>
+      <div>{'nlp_compromise operates according to these concepts:'}</div>
       {heading('Text', 'a collection of sentences, and methods that map over them.')}
       {heading('Sentence', `a independant collection of terms, and the logic for transforming them accurately.`)}
         <ul>
@@ -103,7 +105,7 @@ npm install nlp-syllables
 Every class and it's prototype are surfaced in the api for augmenting or overloading.
 Any sort of procedure or analysis can be applied, then shared as a plugin.
 Multiple plugins can be applied, and co-ordinated.
-\`\`\`
+<pre><code class="javascript">
     let my_mixin = {
       Term: {
         fun : function() {
@@ -115,7 +117,7 @@ Multiple plugins can be applied, and co-ordinated.
     let w = nlp_compromise.term('work');
     w.fun()
     // "work!"
-\`\`\`
+</code></pre>
 
 For smarter plugins, you can also pass a function into *nlp_compromise.plugin* to get access to the library instance.
 

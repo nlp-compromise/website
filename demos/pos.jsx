@@ -116,7 +116,7 @@ class Pos extends React.Component {
         let key = o + '-' + i;
         return this.makeTerm(t, key);
       });
-      return <div>{terms}</div>;
+      return <div key={i}>{terms}</div>;
     });
     return <div>{all}</div>;
   }
