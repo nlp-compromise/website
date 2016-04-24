@@ -3,7 +3,7 @@ let path = require('path');
 let Webpack = require('webpack');
 
 module.exports = {
-  entry: './home.jsx',
+  entry: './src/main.coffee',
   module: {
     loaders: [
       {
@@ -16,12 +16,16 @@ module.exports = {
       {
         test: /\.json$/,
         loader: 'json'
+      },
+      {
+        test: /\.coffee$/,
+        loader: 'coffee-loader'
       }
     ]
   },
   output: {
     path: __dirname,
-    filename: './build/demo.tmp.js'
+    filename: './build/build.js'
   },
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
