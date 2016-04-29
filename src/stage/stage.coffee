@@ -8,9 +8,9 @@ class Flipper extends React.Component
       word:props.words[0],
       delay:Math.random()*3000 + 2000
     }
-    setTimeout(=>
-      @chooseWord()
-    , @state.delay)
+    # setTimeout(=>
+    #   @chooseWord()
+    # , @state.delay)
 
   chooseWord:=>
     r= Math.random()*@state.words.length

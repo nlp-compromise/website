@@ -21,7 +21,7 @@ class Square extends React.Component
     @css =
       container:
         width:350
-        height:200
+        height:180
         margin:20
         border:"1px solid lightgrey"
         borderLeft:"6px solid "+colors[r]
