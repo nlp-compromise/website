@@ -21,7 +21,6 @@ class Fact extends React.Component
     @state = {}
 
   render: ->
-    console.log @props
     div style: @css.container,
       span style: @css.big,
         @props.big

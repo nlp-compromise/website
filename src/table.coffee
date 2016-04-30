@@ -8,12 +8,10 @@ class Table extends React.Component
         textAlign:'center'
 
   render: ->
-    console.log @props.data
     return (
       table style:@css.container,
         tbody null,
           for row, i in @props.data
-            console.log row
             tr key:i,
               for c,o in row
                 td key:o, c

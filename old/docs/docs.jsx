@@ -51,9 +51,9 @@ let docs=[
     title: '',
     href: '#',
     md: `
-All rule-based non-statistical nlp owes credit to [Eric Brill](http://www.aclweb.org/anthology/H92-1022), who showed that simple, debuggable NLP can be competitive with more salacious, probablistic methods.
+All rule-based non-statistical nlp owes credit to [Eric Brill](http://www.aclweb.org/anthology/H92-1022), who showed that simple, debuggable NLP can be competitive with more salacious, probablistic ones.
 
-This project is only possible with generous code-sharing from:
+This project is only possible with generous code-~stealing~sharing from:
 * Percy Wegmann's [jspos](https://github.com/konsumer/jspos), (itself inspired from Mark Watson's [fasttag](https://github.com/mark-watson/fasttag_v2))
 * [NodeBox linguistics](https://www.nodebox.net/code/index.php/Linguistics) by Frederik De Bleser and Tom De Smedt
 * Rob Ellis's [Superscript](http://superscriptjs.com/), and Chris Umbel's [NaturalNode](https://github.com/NaturalNode/natural)

@@ -1,14 +1,16 @@
 
-{div, span, a, img, br} = React.DOM
+{div, span, a, img, br, h2} = React.DOM
 { Textfield, Grid, Cell } =require('react-mdl')
-Square=require('./square.coffee')
 Stage=require('./stage/stage.coffee')
 demos=require('./demos.coffee')
+ShowOff=require('./showOff.coffee')
 
 Table= (args)->
   React.createElement(require('./table.coffee'), args)
 Fact= (args)->
   React.createElement(require('./fact.coffee'), args)
+Square= (args)->
+  React.createElement(require('./square.coffee'), args)
 
 
 class Main extends React.Component
@@ -18,13 +20,20 @@ class Main extends React.Component
         color:'grey'
       show:
         position:'relative'
-        # fontSize:35
+        color:'slategrey'
+        fontSize:20
         height:200
         padding:60
+      brag:
+        position:'relative'
+        fontSize:35
+        padding:60
+        textAlign:'left'
       usage:
         position:'relative'
         fontSize:35
         height:150
+        textAlign:'left'
         # paddingLeft:"50%"
       example:
         display:'block'
@@ -46,6 +55,11 @@ class Main extends React.Component
         padding: 8,
         margin: 8,
         fontSize:12
+      heading:
+        fontSize:28
+        color:'#484754'
+        paddingTop:35
+        paddingLeft:10
     @state = {
       arr:[1,2,3]
     }
@@ -57,20 +71,34 @@ class Main extends React.Component
       div style:@css.code, "<script src='http://cdn.nlpcompromise.com/nlp_compromise.min.js'/>"
 
   render: ->
-    brag=Fact({big:'110', unit:'kb', subtext:'flat js file'})
+    brag=Fact({big:'110', unit:'kb', subtext:'js file'})
     install=@usage()
     div style:@css.container,
-      img {style:{width:30}, src:"./lib/github.png"}
-      a href:"https://github.com/nlp-compromise/nlp_compromise", 'source'
+      img {style:{padding:5,width:30}, src:"./lib/github.png"}
+      a style:{color:'steelblue'},href:"https://github.com/nlp-compromise/nlp_compromise", 'source'
       div style:@css.show,
-        div null, "🌈 hi,"
-        div null, "nlp_compromise does NLP in the browser"
-        # React.createElement(Stage)
+        div null,
+          span style:{color:'steelblue', fontSize:30}, "🌈"
+          span style:{color:'lightsteelblue', fontSize:20}, " hi,"
+        div  style:{padding:40}, "nlp_compromise does NLP in the browser"
 
+      ShowOff()
       Table({data:[ [[brag],[install]] ] })
+      div style:@css.brag,
+        "It's actually pretty great,"
       div null,
-        for o in demos
-          React.createElement(Square,{o:o})
+        div style:@css.heading, "Sentence methods:"
+          Square({o:demos.pos})
+          Square({o:demos.sentences})
+        div style:@css.heading, "Term methods:"
+          Square({o:demos.pos})
+          Square({o:demos.sentences})
+        div style:@css.heading, "Verb methods:"
+          Square({o:demos.pos})
+          Square({o:demos.sentences})
+        div style:@css.heading, "Noun methods:"
+          Square({o:demos.pos})
+          Square({o:demos.sentences})
 
 setTimeout(->
   ReactDOM.render(React.createElement(Main), document.getElementById('main'))
