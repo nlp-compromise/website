@@ -81,15 +81,19 @@ class Main extends React.Component
         div null,
           span style:{color:'steelblue', fontSize:30}, "🌈"
           span style:{color:'lightsteelblue', fontSize:20}, " hi,"
-        div  style:{padding:40}, "nlp_compromise does NLP in the browser"
+        div  style:{padding:40, color:'lightsteelblue'},
+          span style:{color:'steelblue', fontWeight:500, fontSize:25}, "nlp_compromise "
+          span null, "does NLP in the browser"
+          span style:{fontSize:35, color:'steelblue'}, "☔"
 
       ShowOff()
       Table({data:[ [[brag],[install]] ] })
 
       div style:{padding:"20%"},
         div style:{fontSize:30, color:'burlywood'}, '💪'
-        Bar({value:86, title:'part-of-speech tagging'})
-        Bar({value:92, title:'verb conjugation'})
+        Bar({value:86, title:'part-of-speech tagging', desc:'on the Penn Treebank'})
+        Bar({value:96, title:'us-uk localization', desc:'on silenRob\'s testset', link:'https://github.com/superscriptjs/normalizer/blob/master/data/british.txt'})
+        Bar({value:89, title:'verb conjugation', desc:'on the nodeBox 8k test', link:'https://github.com/nlp-compromise/nlp_compromise/tree/master/test/perf_tests/conjugate_test/nodebox'})
 
       div style:@css.brag,
         "It's actually pretty great,"
