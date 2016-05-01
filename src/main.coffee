@@ -1,9 +1,10 @@
 
-{div, span, a, img, br, h2} = React.DOM
+{div, span, a, img, br, h2, p} = React.DOM
 demos=require('./demos.coffee')
 ShowOff=require('./showOff.coffee')
 Input=require('./input.coffee')
 Bar=require('./bar.coffee')
+Docs=require('./docs.coffee')
 
 Table= (args)->
   React.createElement(require('./table.coffee'), args)
@@ -59,8 +60,10 @@ class Main extends React.Component
       heading:
         fontSize:28
         color:'#484754'
-        paddingTop:35
-        paddingLeft:10
+        padding:30
+        paddingBottom:5
+      squares:
+        paddingLeft:50
     @state = {
       arr:[1,2,3]
     }
@@ -75,8 +78,9 @@ class Main extends React.Component
     brag=Fact({big:'110', unit:'kb', subtext:'js file'})
     install=@usage()
     div style:@css.container,
-      img {style:{padding:5,width:30}, src:"./lib/github.png"}
-      a style:{color:'steelblue'},href:"https://github.com/nlp-compromise/nlp_compromise", 'source'
+      a style:{color:'steelblue', position:'fixed', backgroundColor:'white', left:0, top:0, textDecoration:'none'},href:"https://github.com/nlp-compromise/nlp_compromise",
+        'source'
+        img {style:{padding:5,width:25}, src:"./lib/github.png"}
       div style:@css.show,
         div null,
           span style:{color:'steelblue', fontSize:30}, "🌈"
@@ -87,9 +91,11 @@ class Main extends React.Component
           span style:{fontSize:35, color:'steelblue'}, "☔"
 
       ShowOff()
+      p()
+      p()
       Table({data:[ [[brag],[install]] ] })
 
-      div style:{padding:"20%"},
+      div style:{paddingLeft:"20%", paddingTop:90, paddingBottom:90},
         div style:{fontSize:30, color:'burlywood'}, '💪'
         Bar({value:86, title:'part-of-speech tagging', desc:'on the Penn Treebank'})
         Bar({value:96, title:'us-uk localization', desc:'on silenRob\'s testset', link:'https://github.com/superscriptjs/normalizer/blob/master/data/british.txt'})
@@ -99,17 +105,21 @@ class Main extends React.Component
         "It's actually pretty great,"
       div null,
         div style:@css.heading, "Sentence methods:"
-          Square({o:demos.pos})
-          Square({o:demos.sentences})
+          div style:@css.squares,
+            Square({o:demos.pos})
+            Square({o:demos.sentences})
+            Square({o:demos.negation})
+            Square({o:demos.match})
+
         div style:@css.heading, "Term methods:"
-          Square({o:demos.pos})
-          Square({o:demos.sentences})
-        div style:@css.heading, "Verb methods:"
-          Square({o:demos.pos})
-          Square({o:demos.sentences})
-        div style:@css.heading, "Noun methods:"
-          Square({o:demos.pos})
-          Square({o:demos.sentences})
+          div style:@css.squares,
+            Square({o:demos.locale})
+            Square({o:demos.syllable})
+            Square({o:demos.conjugation})
+            Square({o:demos.inflection})
+            Square({o:demos.number})
+      div style:@css.brag,
+        Docs()
 
 setTimeout(->
   ReactDOM.render(React.createElement(Main), document.getElementById('main'))

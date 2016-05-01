@@ -36,7 +36,7 @@ module.exports={
     title:'Negation'
     square:
       from:"I spoke with everybody."
-      to:"I didn't speak with everybody."
+      to:"I didn't speak with anybody."
     code: 'nlp.sentence(\'\').negate()'
     about: 'turn a sentence into it\s opposite meaning'
 
@@ -55,6 +55,7 @@ module.exports={
       to:"she sells seashells"
     code: 'nlp.text(\'\').match(\'\')'
     about: 'regex-like sytax for finding matches in text'
+
   locale:
     title:'US/UK localization'
     square:

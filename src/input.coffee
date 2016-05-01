@@ -6,8 +6,12 @@ class Input extends React.Component
     @css =
       container:
         position:'relative'
+        textAlign:'center'
+        paddingTop:20
+        paddingLeft:50
       input:
         fontSize:30
+        textAlign:'center'
         width:600
         margin:20
         paddingLeft:30
@@ -22,6 +26,13 @@ class Input extends React.Component
       value:props.value||''
     }
     @callback=@callback.bind(this)
+
+  componentWillReceiveProps:(props)->
+    @state = {
+      timeout:null,
+      value:props.value||''
+    }
+    @props.callback(props.value)
 
   callback:->
     str= @refs.input.value

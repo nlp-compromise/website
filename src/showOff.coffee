@@ -18,7 +18,7 @@ class SmallDemo extends React.Component
     @setState(@state)
 
   render:->
-    div null,
+    div {position:'relative'},
       Input({value:@props.text, callback:@showChange})
       div null, @state.result
 
@@ -48,6 +48,14 @@ demos=
       div style:{},
         topics.map (t,i)->
           span key:i,style:{padding:10, fontSize:28}, '"'+t.text+'"'
+  'conjugation':
+    title:'Verb Conjugation'
+    text:"swimming"
+    code: 'nlp.verb(\'\').conjugate()'
+    about: 'conversion between tense and number'
+    callback:(str)->
+      v= nlp.verb(str)
+      div style:{fontSize:40}, JSON.stringify(v.conjugate(), null, 2)
   'number':
     title:'Number Parsing'
     text:"seven hundred and fifty-four"
@@ -56,8 +64,6 @@ demos=
     callback:(str)->
       v= nlp.value(str)
       div style:{fontSize:40}, v.number
-
-
 
 
 
@@ -70,7 +76,7 @@ class ShowOff extends React.Component
     @setState value:e.target.value
 
   show: (o)->
-    div style:{color:'green'},
+    div style:{},
         React.createElement(SmallDemo, o)
 
   render: ->
