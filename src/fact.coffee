@@ -9,14 +9,14 @@ class Fact extends React.Component
         height:100
       big:
         fontSize:60
-        color:'#32384d'
+        color:'steelblue'
       subtext:
         fontSize:20
         padding:15
         color:'darkgrey'
       unit:
         fontSize:30
-        color:'#32384d'
+        color:'slategrey'
 
     @state = {}
 

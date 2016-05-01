@@ -1,9 +1,9 @@
 
 {div, span, a, img, br, h2} = React.DOM
-{ Textfield, Grid, Cell } =require('react-mdl')
-Stage=require('./stage/stage.coffee')
 demos=require('./demos.coffee')
 ShowOff=require('./showOff.coffee')
+Input=require('./input.coffee')
+Bar=require('./bar.coffee')
 
 Table= (args)->
   React.createElement(require('./table.coffee'), args)
@@ -22,7 +22,7 @@ class Main extends React.Component
         position:'relative'
         color:'slategrey'
         fontSize:20
-        height:200
+        height:150
         padding:60
       brag:
         position:'relative'
@@ -49,12 +49,13 @@ class Main extends React.Component
         position:'relative'
         right:10
         whiteSpace:'nowrap'
-        backgroundColor: '#ebe6e6'
-        color: '#484754'
+        backgroundColor: '#fc9c9d'
+        color: 'slategrey'
         fontFamily: 'Courier',
+        fontWeight:500
         padding: 8,
         margin: 8,
-        fontSize:12
+        fontSize:16
       heading:
         fontSize:28
         color:'#484754'
@@ -84,6 +85,12 @@ class Main extends React.Component
 
       ShowOff()
       Table({data:[ [[brag],[install]] ] })
+
+      div style:{padding:"20%"},
+        div style:{fontSize:30, color:'burlywood'}, '💪'
+        Bar({value:86, title:'part-of-speech tagging'})
+        Bar({value:92, title:'verb conjugation'})
+
       div style:@css.brag,
         "It's actually pretty great,"
       div null,

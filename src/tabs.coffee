@@ -12,11 +12,10 @@ class Tabs extends React.Component
         textAlign:"center"
         position:"relative"
         minHeight:200,
-        border:"1px solid lightgrey"
         borderRadius:5
       tab:
         color:"lightgrey"
-        borderBottom:"2px solid lightsteelblue"
+        borderBottom:"3px solid lightsteelblue"
         marginLeft:20
         marginRight:20
         marginBottom:5
@@ -25,7 +24,7 @@ class Tabs extends React.Component
         fontSize:25
       selected_tab:
         color:"grey"
-        borderBottom:"4px solid steelblue"
+        borderBottom:"4px solid #fc9c9d"
     @css.selected_tab=Object.assign({}, @css.tab, @css.selected_tab)
 
     @state = {
@@ -36,9 +35,8 @@ class Tabs extends React.Component
     @setState({tab:id})
 
   render: ->
-    console.log @state
     div style:@css.container,
-      table style:@css.container,
+      table style:{width:"100%", borderBottom:'1px solid lightgrey'},
         tbody null,
           tr null,
             for k,i in Object.keys(@props.data)
