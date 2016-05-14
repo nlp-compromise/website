@@ -110,8 +110,8 @@ class LongText extends React.Component {
           css_word.color=colours[cmp.state.show]
         }
         return (
-          <span>
-            <span style={css_word} key={i} title={t.tag + '  ' + t.reason}>{ t.text}</span>
+          <span key={i}>
+            <span style={css_word} title={t.tag + '  ' + t.reason}>{t.text}</span>
             <span>{' '}</span>
           </span>
         )
@@ -124,9 +124,9 @@ class LongText extends React.Component {
     });
     return (
       <div style={css.result}>
-          {sentences}
-        </div>
-      );
+        {sentences}
+      </div>
+    );
   }
 
   render () {
