@@ -7,7 +7,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /.*\.jsx$/,
+        test: /.*\.jsx?$/,
         loaders: [
           'babel?cacheDirectory,presets[]=react,presets[]=es2015'
         ],
