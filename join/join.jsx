@@ -55,11 +55,11 @@ class Join extends React.Component {
             <iframe src="./join/embed.html" style={{width:450, margin:20, height:250, overflow:'hidden'}}/>
             <div className="github-card" data-github="nlp-compromise/nlp_compromise" data-width="400" data-height="" data-theme="default"></div>
 
-            <div>Join our <a href="superscriptjs.slack.com/messages/nlp_compromise/">Slack group</a></div>
+            <div>Join our <a href="https://superscriptjs.slack.com/messages/nlp_compromise/">Slack group</a></div>
             <p/>
             <div>File an <a href="https://github.com/nlp-compromise/nlp_compromise/issues">issue on github</a></div>
             <p/>
-            <div>Browser the <a href="./browse">annotated source</a></div>
+            <div>Browse the <a href="./browse">annotated source</a></div>
           </td>
 
           {/*right side*/}
