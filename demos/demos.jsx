@@ -152,7 +152,7 @@ class Docs extends React.Component {
       },
 
       {
-        text: 'grey is my favorite color',
+        text: 'gray is my favorite color',
         title: 'US-UK localization',
         code: 'nlp.plugin(require(\'nlp-locale\'))',
         about: 'converts between british and american spellings',
