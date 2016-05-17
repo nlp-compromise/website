@@ -187,7 +187,7 @@ class Docs extends React.Component {
           return <div key={'tense'} style={css}>{t.text()}</div>;
         }
       },
-      // 
+      //
       // {
       //   text: `This was the best of times, this was the worst of times`,
       //   title: 'Replace',
@@ -256,7 +256,7 @@ class Docs extends React.Component {
           d.i = i;
           return <Demo {...d}/>;
          })}
-        <LongText />
+        {/*<LongText />*/}
       </div>
       );
   }

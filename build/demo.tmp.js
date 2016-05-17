@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "aa64fe9e6cee3af8fe9f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cf9b5178d12ea4ad0ac7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -25550,8 +25550,7 @@
 	        demos.map(function (d, i) {
 	          d.i = i;
 	          return _react2.default.createElement(_demo2.default, d);
-	        }),
-	        _react2.default.createElement(_longText2.default, null)
+	        })
 	      );
 	    }
 	  }]);
