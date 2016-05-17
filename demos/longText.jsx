@@ -65,7 +65,7 @@ class LongText extends React.Component {
     $.get('./texts/' + file + '.txt', function (txt) {
       cmp.state.text = txt;
       cmp.state.result = nlp_compromise.text(txt);
-      console.log(cmp.state.result);
+      // console.log(cmp.state.result);
       cmp.setState(cmp.state);
     });
   }

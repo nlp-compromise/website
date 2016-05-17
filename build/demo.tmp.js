@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cf9b5178d12ea4ad0ac7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "814ad1fc9c44ad387060"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -632,7 +632,7 @@
 	    if (hash < 0) {
 	      hash = 0;
 	    }
-	    console.log(hash);
+	    // console.log(hash)
 	    _this.state = {
 	      tabId: hash || 0
 	    };
@@ -25212,6 +25212,8 @@
 
 	'use strict';
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
@@ -25279,7 +25281,7 @@
 	        about: 'assigns the particular used grammar for each term',
 	        href: './browse/tagger.html',
 	        callback: function callback(str) {
-	          return _react2.default.createElement(_pos2.default, { str: str });
+	          return _react2.default.createElement(_pos2.default, { key: 'pos', str: str });
 	        }
 	      }, {
 	        text: 'swim',
@@ -25394,7 +25396,7 @@
 	        href: './browse/to_number.html',
 	        callback: function callback(str) {
 	          var v = nlp_compromise.value(str);
-	          console.log(v);
+	          // console.log(v)
 	          var css = {
 	            color: '#596692',
 	            padding: 12,
@@ -25549,8 +25551,9 @@
 	          } },
 	        demos.map(function (d, i) {
 	          d.i = i;
-	          return _react2.default.createElement(_demo2.default, d);
-	        })
+	          return _react2.default.createElement(_demo2.default, _extends({ key: i }, d));
+	        }),
+	        _react2.default.createElement(_longText2.default, null)
 	      );
 	    }
 	  }]);
@@ -25657,7 +25660,7 @@
 	      $.get('./texts/' + file + '.txt', function (txt) {
 	        cmp.state.text = txt;
 	        cmp.state.result = nlp_compromise.text(txt);
-	        console.log(cmp.state.result);
+	        // console.log(cmp.state.result);
 	        cmp.setState(cmp.state);
 	      });
 	    }

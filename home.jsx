@@ -25,7 +25,7 @@ class Home extends React.Component {
     if(hash<0){
       hash=0
     }
-    console.log(hash)
+    // console.log(hash)
     this.state = {
       tabId: hash || 0
     };

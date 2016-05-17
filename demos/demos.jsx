@@ -2,7 +2,7 @@ const {nlp_compromise} = window;
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Cell } from 'react-mdl';
-import LongText from "./longText.jsx"
+import LongText from './longText.jsx'
 import Demo from './demo.jsx';
 import Pos from './pos.jsx';
 
@@ -28,7 +28,7 @@ class Docs extends React.Component {
         about: 'assigns the particular used grammar for each term',
         href: './browse/tagger.html',
         callback: function(str) {
-          return <Pos str={str}/>
+          return <Pos key={'pos'} str={str}/>
         }
       },
       {
@@ -116,7 +116,7 @@ class Docs extends React.Component {
         href: './browse/to_number.html',
         callback: function(str) {
           let v = nlp_compromise.value(str);
-          console.log(v)
+          // console.log(v)
           let css = {
             color: '#596692',
             padding: 12,
@@ -254,9 +254,9 @@ class Docs extends React.Component {
       }}>
         {demos.map(function(d, i) {
           d.i = i;
-          return <Demo {...d}/>;
+          return <Demo key={i} {...d}/>;
          })}
-        {/*<LongText />*/}
+        <LongText />
       </div>
       );
   }
