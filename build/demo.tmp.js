@@ -53,19 +53,8 @@
 /******/
 /******/ 	
 /******/ 	
-/******/ 	// Copied from https://github.com/facebook/react/blob/bef45b0/src/shared/utils/canDefineProperty.js
-/******/ 	var canDefineProperty = false;
-/******/ 	try {
-/******/ 		Object.defineProperty({}, "x", {
-/******/ 			get: function() {}
-/******/ 		});
-/******/ 		canDefineProperty = true;
-/******/ 	} catch(x) {
-/******/ 		// IE will fail on defineProperty
-/******/ 	}
-/******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "06ab93c18d0530db8bcb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "02ebb36d04cbc1367e48"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -88,7 +77,7 @@
 /******/ 		};
 /******/ 		for(var name in __webpack_require__) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(__webpack_require__, name)) {
-/******/ 				if(canDefineProperty) {
+/******/ 				if(Object.defineProperty) {
 /******/ 					Object.defineProperty(fn, name, (function(name) {
 /******/ 						return {
 /******/ 							configurable: true,
@@ -131,7 +120,7 @@
 /******/ 				}
 /******/ 			});
 /******/ 		}
-/******/ 		if(canDefineProperty) {
+/******/ 		if(Object.defineProperty) {
 /******/ 			Object.defineProperty(fn, "e", {
 /******/ 				enumerable: true,
 /******/ 				value: ensure
@@ -890,9 +879,6 @@
 	var queueIndex = -1;
 	
 	function cleanUpNextTick() {
-	    if (!draining || !currentQueue) {
-	        return;
-	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -25382,7 +25368,7 @@
 	        text: 'Mr. Homer J. Simpson, the price is 4.59 for the Ph.Ds. Please R.S.V.P. by tues evening.',
 	        title: 'Sentence segmentation',
 	        code: 'nlp.text(\'\').sentences',
-	        about: 'This chops a piece of text into it\'s component sentences.',
+	        about: 'chops a piece of text into its component sentences',
 	        href: './browse/sentence_parser.html',
 	        callback: function callback(str) {
 	          var t = nlp_compromise.text(str);
@@ -25722,10 +25708,10 @@
 	          }
 	          return _react2.default.createElement(
 	            'span',
-	            null,
+	            { key: i },
 	            _react2.default.createElement(
 	              'span',
-	              { style: css_word, key: i, title: t.tag + '  ' + t.reason },
+	              { style: css_word, title: t.tag + '  ' + t.reason },
 	              t.text
 	            ),
 	            _react2.default.createElement(
@@ -27516,10 +27502,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * Bowser - a browser detector
-	 * https://github.com/ded/bowser
-	 * MIT License | (c) Dustin Diaz 2015
-	 */
+	  * Bowser - a browser detector
+	  * https://github.com/ded/bowser
+	  * MIT License | (c) Dustin Diaz 2015
+	  */
 	
 	!function (name, definition) {
 	  if (typeof module != 'undefined' && module.exports) module.exports = definition()
@@ -27547,36 +27533,18 @@
 	    var iosdevice = getFirstMatch(/(ipod|iphone|ipad)/i).toLowerCase()
 	      , likeAndroid = /like android/i.test(ua)
 	      , android = !likeAndroid && /android/i.test(ua)
-	      , nexusMobile = /nexus\s*[0-6]\s*/i.test(ua)
-	      , nexusTablet = !nexusMobile && /nexus\s*[0-9]+/i.test(ua)
-	      , chromeos = /CrOS/.test(ua)
-	      , silk = /silk/i.test(ua)
-	      , sailfish = /sailfish/i.test(ua)
-	      , tizen = /tizen/i.test(ua)
-	      , webos = /(web|hpw)os/i.test(ua)
-	      , windowsphone = /windows phone/i.test(ua)
-	      , windows = !windowsphone && /windows/i.test(ua)
-	      , mac = !iosdevice && !silk && /macintosh/i.test(ua)
-	      , linux = !android && !sailfish && !tizen && !webos && /linux/i.test(ua)
+	      , chromeBook = /CrOS/.test(ua)
 	      , edgeVersion = getFirstMatch(/edge\/(\d+(\.\d+)?)/i)
 	      , versionIdentifier = getFirstMatch(/version\/(\d+(\.\d+)?)/i)
 	      , tablet = /tablet/i.test(ua)
 	      , mobile = !tablet && /[^-]mobi/i.test(ua)
-	      , xbox = /xbox/i.test(ua)
 	      , result
 	
-	    if (/opera|opr|opios/i.test(ua)) {
+	    if (/opera|opr/i.test(ua)) {
 	      result = {
 	        name: 'Opera'
 	      , opera: t
-	      , version: versionIdentifier || getFirstMatch(/(?:opera|opr|opios)[\s\/](\d+(\.\d+)?)/i)
-	      }
-	    }
-	    else if (/coast/i.test(ua)) {
-	      result = {
-	        name: 'Opera Coast'
-	        , coast: t
-	        , version: versionIdentifier || getFirstMatch(/(?:coast)[\s\/](\d+(\.\d+)?)/i)
+	      , version: versionIdentifier || getFirstMatch(/(?:opera|opr)[\s\/](\d+(\.\d+)?)/i)
 	      }
 	    }
 	    else if (/yabrowser/i.test(ua)) {
@@ -27586,49 +27554,7 @@
 	      , version: versionIdentifier || getFirstMatch(/(?:yabrowser)[\s\/](\d+(\.\d+)?)/i)
 	      }
 	    }
-	    else if (/ucbrowser/i.test(ua)) {
-	      result = {
-	          name: 'UC Browser'
-	        , ucbrowser: t
-	        , version: getFirstMatch(/(?:ucbrowser)[\s\/](\d+(?:\.\d+)+)/i)
-	      }
-	    }
-	    else if (/mxios/i.test(ua)) {
-	      result = {
-	        name: 'Maxthon'
-	        , maxthon: t
-	        , version: getFirstMatch(/(?:mxios)[\s\/](\d+(?:\.\d+)+)/i)
-	      }
-	    }
-	    else if (/epiphany/i.test(ua)) {
-	      result = {
-	        name: 'Epiphany'
-	        , epiphany: t
-	        , version: getFirstMatch(/(?:epiphany)[\s\/](\d+(?:\.\d+)+)/i)
-	      }
-	    }
-	    else if (/puffin/i.test(ua)) {
-	      result = {
-	        name: 'Puffin'
-	        , puffin: t
-	        , version: getFirstMatch(/(?:puffin)[\s\/](\d+(?:\.\d+)?)/i)
-	      }
-	    }
-	    else if (/sleipnir/i.test(ua)) {
-	      result = {
-	        name: 'Sleipnir'
-	        , sleipnir: t
-	        , version: getFirstMatch(/(?:sleipnir)[\s\/](\d+(?:\.\d+)+)/i)
-	      }
-	    }
-	    else if (/k-meleon/i.test(ua)) {
-	      result = {
-	        name: 'K-Meleon'
-	        , kMeleon: t
-	        , version: getFirstMatch(/(?:k-meleon)[\s\/](\d+(?:\.\d+)+)/i)
-	      }
-	    }
-	    else if (windowsphone) {
+	    else if (/windows phone/i.test(ua)) {
 	      result = {
 	        name: 'Windows Phone'
 	      , windowsphone: t
@@ -27648,10 +27574,9 @@
 	      , msie: t
 	      , version: getFirstMatch(/(?:msie |rv:)(\d+(\.\d+)?)/i)
 	      }
-	    } else if (chromeos) {
+	    } else if (chromeBook) {
 	      result = {
 	        name: 'Chrome'
-	      , chromeos: t
 	      , chromeBook: t
 	      , chrome: t
 	      , version: getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i)
@@ -27663,14 +27588,23 @@
 	      , version: edgeVersion
 	      }
 	    }
-	    else if (/vivaldi/i.test(ua)) {
+	    else if (/chrome|crios|crmo/i.test(ua)) {
 	      result = {
-	        name: 'Vivaldi'
-	        , vivaldi: t
-	        , version: getFirstMatch(/vivaldi\/(\d+(\.\d+)?)/i) || versionIdentifier
+	        name: 'Chrome'
+	      , chrome: t
+	      , version: getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i)
 	      }
 	    }
-	    else if (sailfish) {
+	    else if (iosdevice) {
+	      result = {
+	        name : iosdevice == 'iphone' ? 'iPhone' : iosdevice == 'ipad' ? 'iPad' : 'iPod'
+	      }
+	      // WTF: version is not part of user agent in web apps
+	      if (versionIdentifier) {
+	        result.version = versionIdentifier
+	      }
+	    }
+	    else if (/sailfish/i.test(ua)) {
 	      result = {
 	        name: 'Sailfish'
 	      , sailfish: t
@@ -27684,21 +27618,27 @@
 	      , version: getFirstMatch(/seamonkey\/(\d+(\.\d+)?)/i)
 	      }
 	    }
-	    else if (/firefox|iceweasel|fxios/i.test(ua)) {
+	    else if (/firefox|iceweasel/i.test(ua)) {
 	      result = {
 	        name: 'Firefox'
 	      , firefox: t
-	      , version: getFirstMatch(/(?:firefox|iceweasel|fxios)[ \/](\d+(\.\d+)?)/i)
+	      , version: getFirstMatch(/(?:firefox|iceweasel)[ \/](\d+(\.\d+)?)/i)
 	      }
 	      if (/\((mobile|tablet);[^\)]*rv:[\d\.]+\)/i.test(ua)) {
 	        result.firefoxos = t
 	      }
 	    }
-	    else if (silk) {
+	    else if (/silk/i.test(ua)) {
 	      result =  {
 	        name: 'Amazon Silk'
 	      , silk: t
 	      , version : getFirstMatch(/silk\/(\d+(\.\d+)?)/i)
+	      }
+	    }
+	    else if (android) {
+	      result = {
+	        name: 'Android'
+	      , version: versionIdentifier
 	      }
 	    }
 	    else if (/phantom/i.test(ua)) {
@@ -27715,7 +27655,7 @@
 	      , version: versionIdentifier || getFirstMatch(/blackberry[\d]+\/(\d+(\.\d+)?)/i)
 	      }
 	    }
-	    else if (webos) {
+	    else if (/(web|hpw)os/i.test(ua)) {
 	      result = {
 	        name: 'WebOS'
 	      , webos: t
@@ -27730,56 +27670,18 @@
 	      , version: getFirstMatch(/dolfin\/(\d+(\.\d+)?)/i)
 	      };
 	    }
-	    else if (tizen) {
+	    else if (/tizen/i.test(ua)) {
 	      result = {
 	        name: 'Tizen'
 	      , tizen: t
 	      , version: getFirstMatch(/(?:tizen\s?)?browser\/(\d+(\.\d+)?)/i) || versionIdentifier
 	      };
 	    }
-	    else if (/qupzilla/i.test(ua)) {
-	      result = {
-	        name: 'QupZilla'
-	        , qupzilla: t
-	        , version: getFirstMatch(/(?:qupzilla)[\s\/](\d+(?:\.\d+)+)/i) || versionIdentifier
-	      }
-	    }
-	    else if (/chrome|crios|crmo/i.test(ua)) {
-	      result = {
-	        name: 'Chrome'
-	        , chrome: t
-	        , version: getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i)
-	      }
-	    }
-	    else if (android) {
-	      result = {
-	        name: 'Android'
-	        , version: versionIdentifier
-	      }
-	    }
-	    else if (/safari|applewebkit/i.test(ua)) {
+	    else if (/safari/i.test(ua)) {
 	      result = {
 	        name: 'Safari'
 	      , safari: t
-	      }
-	      if (versionIdentifier) {
-	        result.version = versionIdentifier
-	      }
-	    }
-	    else if (iosdevice) {
-	      result = {
-	        name : iosdevice == 'iphone' ? 'iPhone' : iosdevice == 'ipad' ? 'iPad' : 'iPod'
-	      }
-	      // WTF: version is not part of user agent in web apps
-	      if (versionIdentifier) {
-	        result.version = versionIdentifier
-	      }
-	    }
-	    else if(/googlebot/i.test(ua)) {
-	      result = {
-	        name: 'Googlebot'
-	      , googlebot: t
-	      , version: getFirstMatch(/googlebot\/(\d+(\.\d+))/i) || versionIdentifier
+	      , version: versionIdentifier
 	      }
 	    }
 	    else {
@@ -27791,13 +27693,8 @@
 	
 	    // set webkit or gecko flag for browsers based on these engines
 	    if (!result.msedge && /(apple)?webkit/i.test(ua)) {
-	      if (/(apple)?webkit\/537\.36/i.test(ua)) {
-	        result.name = result.name || "Blink"
-	        result.blink = t
-	      } else {
-	        result.name = result.name || "Webkit"
-	        result.webkit = t
-	      }
+	      result.name = result.name || "Webkit"
+	      result.webkit = t
 	      if (!result.version && versionIdentifier) {
 	        result.version = versionIdentifier
 	      }
@@ -27813,14 +27710,6 @@
 	    } else if (iosdevice) {
 	      result[iosdevice] = t
 	      result.ios = t
-	    } else if (mac) {
-	      result.mac = t
-	    } else if (xbox) {
-	      result.xbox = t
-	    } else if (windows) {
-	      result.windows = t
-	    } else if (linux) {
-	      result.linux = t
 	    }
 	
 	    // OS version extraction
@@ -27847,24 +27736,9 @@
 	
 	    // device type extraction
 	    var osMajorVersion = osVersion.split('.')[0];
-	    if (
-	         tablet
-	      || nexusTablet
-	      || iosdevice == 'ipad'
-	      || (android && (osMajorVersion == 3 || (osMajorVersion >= 4 && !mobile)))
-	      || result.silk
-	    ) {
+	    if (tablet || iosdevice == 'ipad' || (android && (osMajorVersion == 3 || (osMajorVersion == 4 && !mobile))) || result.silk) {
 	      result.tablet = t
-	    } else if (
-	         mobile
-	      || iosdevice == 'iphone'
-	      || iosdevice == 'ipod'
-	      || android
-	      || nexusMobile
-	      || result.blackberry
-	      || result.webos
-	      || result.bada
-	    ) {
+	    } else if (mobile || iosdevice == 'iphone' || iosdevice == 'ipod' || android || result.blackberry || result.webos || result.bada) {
 	      result.mobile = t
 	    }
 	
@@ -27873,7 +27747,6 @@
 	    if (result.msedge ||
 	        (result.msie && result.version >= 10) ||
 	        (result.yandexbrowser && result.version >= 15) ||
-			    (result.vivaldi && result.version >= 1.0) ||
 	        (result.chrome && result.version >= 20) ||
 	        (result.firefox && result.version >= 20.0) ||
 	        (result.safari && result.version >= 6) ||
@@ -29274,7 +29147,6 @@
 	  Based on code that is Copyright 2013-2015, Facebook, Inc.
 	  All rights reserved.
 	*/
-	/* global define */
 	
 	(function () {
 		'use strict';
@@ -35943,7 +35815,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * lodash (Custom Build) <https://lodash.com/>
+	 * lodash 4.0.8 (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
 	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
 	 * Released under MIT license <https://lodash.com/license>
@@ -35962,6 +35834,20 @@
 	
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^(?:0|[1-9]\d*)$/;
+	
+	/**
+	 * Checks if `value` is a valid array-like index.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+	 */
+	function isIndex(value, length) {
+	  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
+	  length = length == null ? MAX_SAFE_INTEGER : length;
+	  return value > -1 && value % 1 == 0 && value < length;
+	}
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -36005,7 +35891,7 @@
 	 *
 	 * @private
 	 * @param {string} key The key of the property to get.
-	 * @returns {Function} Returns the new accessor function.
+	 * @returns {Function} Returns the new function.
 	 */
 	function baseProperty(key) {
 	  return function(object) {
@@ -36055,7 +35941,7 @@
 	        customizer = length > 1 ? sources[length - 1] : undefined,
 	        guard = length > 2 ? sources[2] : undefined;
 	
-	    customizer = (assigner.length > 3 && typeof customizer == 'function')
+	    customizer = typeof customizer == 'function'
 	      ? (length--, customizer)
 	      : undefined;
 	
@@ -36086,21 +35972,6 @@
 	 * @returns {*} Returns the "length" value.
 	 */
 	var getLength = baseProperty('length');
-	
-	/**
-	 * Checks if `value` is a valid array-like index.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
-	 */
-	function isIndex(value, length) {
-	  length = length == null ? MAX_SAFE_INTEGER : length;
-	  return !!length &&
-	    (typeof value == 'number' || reIsUint.test(value)) &&
-	    (value > -1 && value % 1 == 0 && value < length);
-	}
 	
 	/**
 	 * Checks if the given arguments are from an iteratee call.
@@ -36308,7 +36179,6 @@
 	 * @param {Object} object The destination object.
 	 * @param {...Object} [sources] The source objects.
 	 * @returns {Object} Returns `object`.
-	 * @see _.assignIn
 	 * @example
 	 *
 	 * function Foo() {
@@ -36345,7 +36215,7 @@
 /***/ function(module, exports) {
 
 	/**
-	 * lodash (Custom Build) <https://lodash.com/>
+	 * lodash 4.0.6 (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
 	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
 	 * Released under MIT license <https://lodash.com/license>
@@ -36384,6 +36254,20 @@
 	  return result;
 	}
 	
+	/**
+	 * Checks if `value` is a valid array-like index.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+	 */
+	function isIndex(value, length) {
+	  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
+	  length = length == null ? MAX_SAFE_INTEGER : length;
+	  return value > -1 && value % 1 == 0 && value < length;
+	}
+	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
 	
@@ -36391,8 +36275,7 @@
 	var hasOwnProperty = objectProto.hasOwnProperty;
 	
 	/**
-	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
 	 * of values.
 	 */
 	var objectToString = objectProto.toString;
@@ -36437,7 +36320,7 @@
 	 *
 	 * @private
 	 * @param {string} key The key of the property to get.
-	 * @returns {Function} Returns the new accessor function.
+	 * @returns {Function} Returns the new function.
 	 */
 	function baseProperty(key) {
 	  return function(object) {
@@ -36484,21 +36367,6 @@
 	    return baseTimes(length, String);
 	  }
 	  return null;
-	}
-	
-	/**
-	 * Checks if `value` is a valid array-like index.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
-	 */
-	function isIndex(value, length) {
-	  length = length == null ? MAX_SAFE_INTEGER : length;
-	  return !!length &&
-	    (typeof value == 'number' || reIsUint.test(value)) &&
-	    (value > -1 && value % 1 == 0 && value < length);
 	}
 	
 	/**
@@ -36683,9 +36551,8 @@
 	}
 	
 	/**
-	 * Checks if `value` is the
-	 * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
-	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	 *
 	 * @static
 	 * @memberOf _
@@ -36819,7 +36686,7 @@
 /***/ function(module, exports) {
 
 	/**
-	 * lodash (Custom Build) <https://lodash.com/>
+	 * lodash 4.0.2 (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
 	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
 	 * Released under MIT license <https://lodash.com/license>
@@ -36862,7 +36729,7 @@
 	 * @private
 	 * @param {Function} func The function to invoke.
 	 * @param {*} thisArg The `this` binding of `func`.
-	 * @param {Array} args The arguments to invoke `func` with.
+	 * @param {...*} args The arguments to invoke `func` with.
 	 * @returns {*} Returns the result of `func`.
 	 */
 	function apply(func, thisArg, args) {
@@ -36880,8 +36747,7 @@
 	var objectProto = Object.prototype;
 	
 	/**
-	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
 	 * of values.
 	 */
 	var objectToString = objectProto.toString;
@@ -36970,9 +36836,8 @@
 	}
 	
 	/**
-	 * Checks if `value` is the
-	 * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
-	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	 *
 	 * @static
 	 * @memberOf _
@@ -37051,41 +36916,6 @@
 	}
 	
 	/**
-	 * Converts `value` to a finite number.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.12.0
-	 * @category Lang
-	 * @param {*} value The value to convert.
-	 * @returns {number} Returns the converted number.
-	 * @example
-	 *
-	 * _.toFinite(3.2);
-	 * // => 3.2
-	 *
-	 * _.toFinite(Number.MIN_VALUE);
-	 * // => 5e-324
-	 *
-	 * _.toFinite(Infinity);
-	 * // => 1.7976931348623157e+308
-	 *
-	 * _.toFinite('3.2');
-	 * // => 3.2
-	 */
-	function toFinite(value) {
-	  if (!value) {
-	    return value === 0 ? value : 0;
-	  }
-	  value = toNumber(value);
-	  if (value === INFINITY || value === -INFINITY) {
-	    var sign = (value < 0 ? -1 : 1);
-	    return sign * MAX_INTEGER;
-	  }
-	  return value === value ? value : 0;
-	}
-	
-	/**
 	 * Converts `value` to an integer.
 	 *
 	 * **Note:** This function is loosely based on
@@ -37099,7 +36929,7 @@
 	 * @returns {number} Returns the converted integer.
 	 * @example
 	 *
-	 * _.toInteger(3.2);
+	 * _.toInteger(3);
 	 * // => 3
 	 *
 	 * _.toInteger(Number.MIN_VALUE);
@@ -37108,14 +36938,20 @@
 	 * _.toInteger(Infinity);
 	 * // => 1.7976931348623157e+308
 	 *
-	 * _.toInteger('3.2');
+	 * _.toInteger('3');
 	 * // => 3
 	 */
 	function toInteger(value) {
-	  var result = toFinite(value),
-	      remainder = result % 1;
-	
-	  return result === result ? (remainder ? result - remainder : result) : 0;
+	  if (!value) {
+	    return value === 0 ? value : 0;
+	  }
+	  value = toNumber(value);
+	  if (value === INFINITY || value === -INFINITY) {
+	    var sign = (value < 0 ? -1 : 1);
+	    return sign * MAX_INTEGER;
+	  }
+	  var remainder = value % 1;
+	  return value === value ? (remainder ? value - remainder : value) : 0;
 	}
 	
 	/**
@@ -37129,8 +36965,8 @@
 	 * @returns {number} Returns the number.
 	 * @example
 	 *
-	 * _.toNumber(3.2);
-	 * // => 3.2
+	 * _.toNumber(3);
+	 * // => 3
 	 *
 	 * _.toNumber(Number.MIN_VALUE);
 	 * // => 5e-324
@@ -37138,8 +36974,8 @@
 	 * _.toNumber(Infinity);
 	 * // => Infinity
 	 *
-	 * _.toNumber('3.2');
-	 * // => 3.2
+	 * _.toNumber('3');
+	 * // => 3
 	 */
 	function toNumber(value) {
 	  if (typeof value == 'number') {
@@ -38513,7 +38349,7 @@
 	                'Join our ',
 	                _react2.default.createElement(
 	                  'a',
-	                  { href: 'superscriptjs.slack.com/messages/nlp_compromise/' },
+	                  { href: 'https://superscriptjs.slack.com/messages/nlp_compromise/' },
 	                  'Slack group'
 	                )
 	              ),
@@ -38532,7 +38368,7 @@
 	              _react2.default.createElement(
 	                'div',
 	                null,
-	                'Browser the ',
+	                'Browse the ',
 	                _react2.default.createElement(
 	                  'a',
 	                  { href: './browse' },
