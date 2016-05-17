@@ -55,7 +55,7 @@ class Join extends React.Component {
             <iframe src="./join/embed.html" style={{width:450, margin:20, height:250, overflow:'hidden'}}/>
             <div className="github-card" data-github="nlp-compromise/nlp_compromise" data-width="400" data-height="" data-theme="default"></div>
 
-            <div>Join our <a href="https://superscriptjs.slack.com/messages/nlp_compromise/">Slack group</a></div>
+            <div>Join our <a href="http://superscript-slackin.herokuapp.com/">Slack group</a></div>
             <p/>
             <div>File an <a href="https://github.com/nlp-compromise/nlp_compromise/issues">issue on github</a></div>
             <p/>
@@ -63,7 +63,7 @@ class Join extends React.Component {
           </td>
 
           {/*right side*/}
-          <td style={css.right} onClick={this.link.bind(this,"http://work.spencermounta.in")}>
+          <td style={css.right} onClick={this.link.bind(this, 'http://work.spencermounta.in')}>
             <img style={css.img} src="https://s3.amazonaws.com/spencermounta.in/portfolio/bio.jpg" />
             <div>
               Nlp_compromise was made by <a href="http://spencermounta.in">Spencer Kelly</a>

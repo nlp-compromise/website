@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "02ebb36d04cbc1367e48"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "aa64fe9e6cee3af8fe9f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -38349,7 +38349,7 @@
 	                'Join our ',
 	                _react2.default.createElement(
 	                  'a',
-	                  { href: 'https://superscriptjs.slack.com/messages/nlp_compromise/' },
+	                  { href: 'http://superscript-slackin.herokuapp.com/' },
 	                  'Slack group'
 	                )
 	              ),
@@ -38378,7 +38378,7 @@
 	            ),
 	            _react2.default.createElement(
 	              'td',
-	              { style: css.right, onClick: this.link.bind(this, "http://work.spencermounta.in") },
+	              { style: css.right, onClick: this.link.bind(this, 'http://work.spencermounta.in') },
 	              _react2.default.createElement('img', { style: css.img, src: 'https://s3.amazonaws.com/spencermounta.in/portfolio/bio.jpg' }),
 	              _react2.default.createElement(
 	                'div',
