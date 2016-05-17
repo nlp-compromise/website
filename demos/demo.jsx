@@ -8,7 +8,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: this.props.text || '',
+      text: props.text || '',
       about: true,
       color:colors[parseInt(Math.random() * 9, 10)]
     };

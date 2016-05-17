@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "814ad1fc9c44ad387060"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8f38c52b5513bc7192a5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -25836,7 +25836,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Demo).call(this, props));
 	
 	    _this.state = {
-	      text: _this.props.text || '',
+	      text: props.text || '',
 	      about: true,
 	      color: _colors2.default[parseInt(Math.random() * 9, 10)]
 	    };
