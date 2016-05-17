@@ -93,7 +93,7 @@ class Docs extends React.Component {
         text: 'Mr. Homer J. Simpson, the price is 4.59 for the Ph.Ds. Please R.S.V.P. by tues evening.',
         title: 'Sentence segmentation',
         code: 'nlp.text(\'\').sentences',
-        about: 'This chops a piece of text into it\'s component sentences.',
+        about: 'chops a piece of text into its component sentences',
         href: './browse/sentence_parser.html',
         callback: function(str) {
           let t = nlp_compromise.text(str);
