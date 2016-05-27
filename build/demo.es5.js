@@ -59,7 +59,7 @@ var Home = function (_React$Component) {
     if (hash < 0) {
       hash = 0;
     }
-    console.log(hash);
+    // console.log(hash)
     _this.state = {
       tabId: hash || 0
     };
@@ -187,7 +187,7 @@ var Demo = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Demo).call(this, props));
 
     _this.state = {
-      text: _this.props.text || '',
+      text: props.text || '',
       about: true,
       color: _colors2.default[parseInt(Math.random() * 9, 10)]
     };
@@ -334,6 +334,8 @@ module.exports = Demo;
 },{"../colors":2,"react":300,"react-dom":56,"react-mdl":137}],4:[function(require,module,exports){
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -401,7 +403,7 @@ var Docs = function (_React$Component) {
         about: 'assigns the particular used grammar for each term',
         href: './browse/tagger.html',
         callback: function callback(str) {
-          return _react2.default.createElement(_pos2.default, { str: str });
+          return _react2.default.createElement(_pos2.default, { key: 'pos', str: str });
         }
       }, {
         text: 'swim',
@@ -516,7 +518,7 @@ var Docs = function (_React$Component) {
         href: './browse/to_number.html',
         callback: function callback(str) {
           var v = nlp_compromise.value(str);
-          console.log(v);
+          // console.log(v)
           var css = {
             color: '#596692',
             padding: 12,
@@ -557,7 +559,7 @@ var Docs = function (_React$Component) {
           });
         }
       }, {
-        text: 'grey is my favorite color',
+        text: 'gray is my favorite color',
         title: 'US-UK localization',
         code: 'nlp.plugin(require(\'nlp-locale\'))',
         about: 'converts between british and american spellings',
@@ -671,7 +673,7 @@ var Docs = function (_React$Component) {
           } },
         demos.map(function (d, i) {
           d.i = i;
-          return _react2.default.createElement(_demo2.default, d);
+          return _react2.default.createElement(_demo2.default, _extends({ key: i }, d));
         }),
         _react2.default.createElement(_longText2.default, null)
       );
@@ -777,7 +779,7 @@ var LongText = function (_React$Component) {
       $.get('./texts/' + file + '.txt', function (txt) {
         cmp.state.text = txt;
         cmp.state.result = nlp_compromise.text(txt);
-        console.log(cmp.state.result);
+        // console.log(cmp.state.result);
         cmp.setState(cmp.state);
       });
     }
@@ -1481,7 +1483,7 @@ var Join = function (_React$Component) {
                 'Join our ',
                 _react2.default.createElement(
                   'a',
-                  { href: 'https://superscriptjs.slack.com/messages/nlp_compromise/' },
+                  { href: 'http://superscript-slackin.herokuapp.com/' },
                   'Slack group'
                 )
               ),
@@ -1510,7 +1512,7 @@ var Join = function (_React$Component) {
             ),
             _react2.default.createElement(
               'td',
-              { style: css.right, onClick: this.link.bind(this, "http://work.spencermounta.in") },
+              { style: css.right, onClick: this.link.bind(this, 'http://work.spencermounta.in') },
               _react2.default.createElement('img', { style: css.img, src: 'https://s3.amazonaws.com/spencermounta.in/portfolio/bio.jpg' }),
               _react2.default.createElement(
                 'div',
