@@ -127,7 +127,7 @@ class Docs extends React.Component {
         }
       },
       {
-        text: 'houston texas',
+        text: 'calgary',
         title: 'Syllable hyphenization',
         code: 'nlp.plugin(require(\'nlp-syllables\'))',
         about: 'splits words into their pronounceable parts',
@@ -208,7 +208,7 @@ class Docs extends React.Component {
       // },
 
       {
-        text: `We've only just begun, to live. White lace and promises. We'll start out walkin' and learn to run.`,
+        text: `We've only just begun, to live.`,
         title: 'Contractions',
         code: 'nlp.text(\'\').contractions.expand()',
         about: 'expands apostrophe contractions',
