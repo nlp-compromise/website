@@ -95,7 +95,8 @@ var Home = function (_React$Component) {
           { style: heading_css, onClick: function onClick() {
               return window.location.href = "https://github.com/nlp-compromise/nlp_compromise";
             } },
-          'nlp_compromise'
+          'nlp_compromise',
+          _react2.default.createElement('img', { src: './github_icon.jpg', style: { width: 30 } })
         ),
         _react2.default.createElement(
           _reactMdl.Tabs,
@@ -532,7 +533,7 @@ var Docs = function (_React$Component) {
           );
         }
       }, {
-        text: 'calgary',
+        text: 'houston astros',
         title: 'Syllable hyphenization',
         code: 'nlp.plugin(require(\'nlp-syllables\'))',
         about: 'splits words into their pronounceable parts',
@@ -619,30 +620,8 @@ var Docs = function (_React$Component) {
       //     };
       //     return <div key={'contractions'} style={css}>{t.text()}</div>;
       //   }
-      // },
-
+      // },  
       {
-        text: 'We\'ve only just begun, to live.',
-        title: 'Contractions',
-        code: 'nlp.text(\'\').contractions.expand()',
-        about: 'expands apostrophe contractions',
-        href: '/browse/interpret.html',
-        callback: function callback(str) {
-          var t = nlp_compromise.text(str);
-          t.contractions.expand();
-          var css = {
-            color: '#596692',
-            padding: 35,
-            fontSize: 26,
-            fontWeight: 400
-          };
-          return _react2.default.createElement(
-            'div',
-            { key: 'contractions', style: css },
-            t.text()
-          );
-        }
-      }, {
         text: 'and everything under the sun is in tune, but the sun is eclipsed by the moon.',
         title: 'Negation',
         code: 'nlp.text(\'\').negate()',
@@ -660,6 +639,27 @@ var Docs = function (_React$Component) {
           return _react2.default.createElement(
             'div',
             { key: 'negate', style: css },
+            t.text()
+          );
+        }
+      }, {
+        text: 'We\'ve only just begun, to live.',
+        title: 'Contractions',
+        code: 'nlp.text(\'\').contractions.expand()',
+        about: 'expands apostrophe contractions',
+        href: '/browse/interpret.html',
+        callback: function callback(str) {
+          var t = nlp_compromise.text(str);
+          t.contractions.expand();
+          var css = {
+            color: '#596692',
+            padding: 35,
+            fontSize: 26,
+            fontWeight: 400
+          };
+          return _react2.default.createElement(
+            'div',
+            { key: 'contractions', style: css },
             t.text()
           );
         }
@@ -1513,7 +1513,6 @@ var Join = function (_React$Component) {
             _react2.default.createElement(
               'td',
               { style: css.right, onClick: this.link.bind(this, 'http://work.spencermounta.in') },
-              _react2.default.createElement('img', { style: css.img, src: 'https://s3.amazonaws.com/spencermounta.in/portfolio/bio.jpg' }),
               _react2.default.createElement(
                 'div',
                 null,

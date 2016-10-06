@@ -56,6 +56,7 @@ class Home extends React.Component {
 
       <div style={heading_css} onClick={()=>window.location.href="https://github.com/nlp-compromise/nlp_compromise"}>
         nlp_compromise
+        <img src='./github_icon.jpg' style={{width:30}}/>
       </div>
 
       <Tabs activeTab={state.tabId} onChange={(tabId) => {

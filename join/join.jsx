@@ -64,7 +64,6 @@ class Join extends React.Component {
 
           {/*right side*/}
           <td style={css.right} onClick={this.link.bind(this, 'http://work.spencermounta.in')}>
-            <img style={css.img} src="https://s3.amazonaws.com/spencermounta.in/portfolio/bio.jpg" />
             <div>
               Nlp_compromise was made by <a href="http://spencermounta.in">Spencer Kelly</a>
               <br/>

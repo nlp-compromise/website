@@ -127,7 +127,7 @@ class Docs extends React.Component {
         }
       },
       {
-        text: 'calgary',
+        text: 'houston astros',
         title: 'Syllable hyphenization',
         code: 'nlp.plugin(require(\'nlp-syllables\'))',
         about: 'splits words into their pronounceable parts',
@@ -205,8 +205,25 @@ class Docs extends React.Component {
       //     };
       //     return <div key={'contractions'} style={css}>{t.text()}</div>;
       //   }
-      // },
-
+      // },   
+      {
+        text: 'and everything under the sun is in tune, but the sun is eclipsed by the moon.',
+        title: 'Negation',
+        code: 'nlp.text(\'\').negate()',
+        about: 'turns a statement into the opposite meaning',
+        href: '/browse/negate.html',
+        callback: function(str) {
+          let t = nlp_compromise.text(str);
+          t.negate()
+          let css = {
+            color: '#596692',
+            padding: 32,
+            fontSize: 26,
+            fontWeight: 600
+          };
+          return <div key={'negate'} style={css}>{t.text()}</div>;
+        }
+      },
       {
         text: `We've only just begun, to live.`,
         title: 'Contractions',
@@ -225,26 +242,6 @@ class Docs extends React.Component {
           return <div key={'contractions'} style={css}>{t.text()}</div>;
         }
       },
-
-      {
-        text: 'and everything under the sun is in tune, but the sun is eclipsed by the moon.',
-        title: 'Negation',
-        code: 'nlp.text(\'\').negate()',
-        about: 'turns a statement into the opposite meaning',
-        href: '/browse/negate.html',
-        callback: function(str) {
-          let t = nlp_compromise.text(str);
-          t.negate()
-          let css = {
-            color: '#596692',
-            padding: 32,
-            fontSize: 26,
-            fontWeight: 600
-          };
-          return <div key={'negate'} style={css}>{t.text()}</div>;
-        }
-      }
-
     ];
 
     return (
