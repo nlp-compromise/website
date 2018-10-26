@@ -1,1 +1,1 @@
-the website & demos for nlp-compromise, along with documentation and inline commenting
+the old website & demos for nlp-compromise, along with documentation and inline commenting
